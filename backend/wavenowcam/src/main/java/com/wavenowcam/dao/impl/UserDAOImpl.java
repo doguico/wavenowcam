@@ -5,10 +5,13 @@
  */
 package com.wavenowcam.dao.impl;
 
+import org.springframework.stereotype.Component;
+
 /**
  *
  * @author guidocorazza
  */
+@Component
 public class UserDAOImpl {
     
 }

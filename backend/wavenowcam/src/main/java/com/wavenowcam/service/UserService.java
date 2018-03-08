@@ -9,6 +9,7 @@ package com.wavenowcam.service;
  *
  * @author guidocorazza
  */
-public class UserService {
+public interface UserService {
+    
     
 }
