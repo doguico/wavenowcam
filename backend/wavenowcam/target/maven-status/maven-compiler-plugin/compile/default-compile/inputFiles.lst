@@ -1,5 +1,8 @@
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/service/impl/UserServiceImpl.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/utils/HibernateUtil.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dos/Beach.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dtos/CarouselBeachDTO.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/exceptions/Base64Exception.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/service/UserService.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/service/impl/BeachServiceImpl.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dao/BeachDAO.java
@@ -10,5 +13,9 @@
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dao/impl/BeachDAOImpl.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dos/Role.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dos/User.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dtos/SelectedBeachDTO.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/utils/Base64Util.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dao/UserDAO.java
 /Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dao/impl/UserDAOImpl.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/tasks/GetStaticImageTask.java
+/Users/guidocorazza/Workspace/wavesnowcam/webapp/backend/wavenowcam/src/main/java/com/wavenowcam/dtos/EditBeachDTO.java

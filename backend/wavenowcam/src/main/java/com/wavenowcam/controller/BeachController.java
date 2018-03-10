@@ -1,6 +1,8 @@
 package com.wavenowcam.controller;
 
-import com.wavenowcam.dtos.BeachDTO;
+import com.wavenowcam.dtos.CarouselBeachDTO;
+import com.wavenowcam.dtos.EditBeachDTO;
+import com.wavenowcam.dtos.SelectedBeachDTO;
 import com.wavenowcam.service.BeachService;
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class BeachController {
 
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public ResponseEntity saveBeach(@RequestBody BeachDTO beach) {
+    public ResponseEntity saveBeach(@RequestBody EditBeachDTO beach) {
         Boolean updating = true;
         String message = "";
         
@@ -66,7 +68,7 @@ public class BeachController {
     @RequestMapping(value = "get/{id}", method = RequestMethod.GET)
     public ResponseEntity getBeach(@PathVariable("id") Long id) {
         LOG.info("Se consulta por la playa con id: " + id);
-        BeachDTO beach = beachService.getBeachById(id);
+        SelectedBeachDTO beach = beachService.getBeachById(id);
         if (beach == null) {
             return ResponseEntity.ok("No existe una playa con id: " + id);
         }
@@ -77,12 +79,12 @@ public class BeachController {
     
     @ResponseBody
     @RequestMapping(method = RequestMethod.GET)
-    public List<BeachDTO> getAllBeaches() {
+    public List<CarouselBeachDTO> getAllBeaches() {
         LOG.info("Se obtendran todas las playas registradas");
         return this.beachService.getAll();
     }
-
-    private Boolean newBeach(BeachDTO beach) {
+    
+    private Boolean newBeach(EditBeachDTO beach) {
         return beach.getId() == null;
     }
 
@@ -90,8 +92,8 @@ public class BeachController {
         return this.beachService.getBeachByName(name) != null;
     }
 
-    private Boolean beachNameIsTakenByDifferentBeach(BeachDTO beach) {
-        BeachDTO oldBeach = this.beachService.getBeachByName(beach.getName());
+    private Boolean beachNameIsTakenByDifferentBeach(EditBeachDTO beach) {
+        EditBeachDTO oldBeach = this.beachService.getBeachByName(beach.getName());
         return oldBeach != null && !oldBeach.getId().equals(beach.getId());
     }
 }

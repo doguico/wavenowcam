@@ -17,22 +17,21 @@ public class Base64Util {
 
     public static void base64AFile(String base64, String path, String type) throws Base64Exception {
         try {
-        Base64 decoder = new Base64();
+            Base64 decoder = new Base64();
 
-        byte[] imageByte = decoder.decode(base64);
+            byte[] imageByte = decoder.decode(base64);
 
-        ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
-        BufferedImage image = ImageIO.read(bis);
-        bis.close();
+            ByteArrayInputStream bis = new ByteArrayInputStream(imageByte);
+            BufferedImage image = ImageIO.read(bis);
+            bis.close();
 
-        ImageIO.write(image, type, new File(path + "." + type));
-        }
-        catch(IOException ex) {
+            ImageIO.write(image, type, new File(path + "." + type));
+        } catch (IOException ex) {
             throw new Base64Exception(Base64Exception.DECODIFICAR);
         }
     }
 
-     public static String fileABase64(String path, String type) throws Base64Exception {
+    public static String fileABase64(String path, String type) throws Base64Exception {
         Base64 encoder = new Base64();
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
@@ -44,12 +43,8 @@ public class Base64Util {
             bos.close();
 
             return imageString;
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             throw new Base64Exception(Base64Exception.CODIFICAR);
         }
     }
 }
-
- 
-

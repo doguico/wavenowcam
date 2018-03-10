@@ -18,8 +18,12 @@ public class Beach implements Serializable {
     private Long id;
     @Column(unique = true)
     private String name;
+    private String uri;
     private String coverPhotoPath;
     private String coverPhotoBase64;
+    private String staticPhotoPath;
+    private String staticPhotoBase64;
+    private String lastUpdate;
     
     public Beach() { }
 
@@ -53,6 +57,38 @@ public class Beach implements Serializable {
 
     public void setCoverPhotoBase64(String coverPhotoBase64) {
         this.coverPhotoBase64 = coverPhotoBase64;
+    }
+
+    public String getStaticPhotoPath() {
+        return staticPhotoPath;
+    }
+
+    public void setStaticPhotoPath(String staticPhotoPath) {
+        this.staticPhotoPath = staticPhotoPath;
+    }
+
+    public String getStaticPhotoBase64() {
+        return staticPhotoBase64;
+    }
+
+    public void setStaticPhotoBase64(String staticPhotoBase64) {
+        this.staticPhotoBase64 = staticPhotoBase64;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getLastUpdate() {
+        return lastUpdate;
+    }
+
+    public void setLastUpdate(String lastUpdate) {
+        this.lastUpdate = lastUpdate;
     }
     
     @Override
