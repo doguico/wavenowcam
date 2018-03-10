@@ -20,11 +20,13 @@
     </properties>
     
     <dependencies>
+        <!--Spring Framework -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>  
-
+        <!--Spring Framework -->
+        
         <!--Hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -33,7 +35,6 @@
         </dependency>
         <!--Hibernate -->
         
-
         <!--MySql connector -->
         <dependency>
             <groupId>mysql</groupId>

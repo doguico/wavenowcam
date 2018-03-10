@@ -3,7 +3,10 @@ package com.wavenowcam.controller;
 import com.wavenowcam.dtos.CarouselBeachDTO;
 import com.wavenowcam.dtos.EditBeachDTO;
 import com.wavenowcam.dtos.SelectedBeachDTO;
+import com.wavenowcam.exceptions.SocketException;
 import com.wavenowcam.service.BeachService;
+import com.wavenowcam.service.CameraService;
+import java.net.MalformedURLException;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -29,12 +32,14 @@ public class BeachController {
 
     @Autowired
     private BeachService beachService;
+    
+    @Autowired
+    private CameraService cameraService;
 
     @ResponseBody
     @RequestMapping(value = "save", method = RequestMethod.POST)
     public ResponseEntity saveBeach(@RequestBody EditBeachDTO beach) {
         Boolean updating = true;
-        String message = "";
         
         if (beach.getName() == null || beach.getName().trim().isEmpty()) {
             return ResponseEntity.ok("El valor del nombre de la playa no puede ser vacio");
@@ -83,6 +88,22 @@ public class BeachController {
         LOG.info("Se obtendran todas las playas registradas");
         return this.beachService.getAll();
     }
+    
+    @ResponseBody
+    @RequestMapping(value = "ping", method = RequestMethod.POST)
+    public ResponseEntity pingUrl(@RequestBody EditBeachDTO beach) {
+        Boolean success = false;
+        try {
+            LOG.info("Pingeando uri " + beach.getUri());
+            success = this.cameraService.pingCamera(beach.getUri());
+        } catch (MalformedURLException ex) {
+            return ResponseEntity.ok("La uri esta mal formada");
+        } catch (SocketException ex) {
+            return ResponseEntity.ok(ex.getMessage());
+        }
+        return ResponseEntity.ok(success);
+    }
+    
     
     private Boolean newBeach(EditBeachDTO beach) {
         return beach.getId() == null;

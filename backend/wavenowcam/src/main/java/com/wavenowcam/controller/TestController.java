@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wavenowcam.controller;
 
 import com.wavenowcam.dtos.EditBeachDTO;
 import com.wavenowcam.exceptions.Base64Exception;
-import com.wavenowcam.utils.Base64Util;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -52,7 +46,5 @@ public class TestController {
         } catch (Base64Exception ex) {
             Logger.getLogger(TestController.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-          
+    }       
 }

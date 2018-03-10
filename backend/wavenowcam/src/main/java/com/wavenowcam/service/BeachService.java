@@ -19,5 +19,4 @@ public interface BeachService {
     public EditBeachDTO getBeachByName(String name);
     public List<CarouselBeachDTO> getAll();
     
-    public void refreshBeachStaticImage(Beach beach);
 }

@@ -1,9 +1,7 @@
 package com.wavenowcam.tasks;
 
-import com.wavenowcam.dao.BeachDAO;
-import com.wavenowcam.dos.Beach;
-import com.wavenowcam.service.BeachService;
-import java.util.List;
+import com.wavenowcam.service.CameraService;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,20 +13,15 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class GetStaticImageTask {
-    
+
+    @Autowired
+    private CameraService cameraService;
     private static final Logger LOG = Logger.getLogger(GetStaticImageTask.class);
-    
-    @Autowired
-    private BeachDAO beachDao;
-    
-    @Autowired
-    private BeachService beachService;
-    
-    @Scheduled(fixedRate = 300000)
-    public void RefreshBeachStaticImage() {
-        List<Beach> beaches = this.beachDao.getAll();
-        for(Beach beach: beaches) {
-            this.beachService.refreshBeachStaticImage(beach);
-        }
+
+    @Scheduled(fixedRate = 30000)
+    public void refreshAllStaticImages() {
+        LOG.info("INICIO : Ejecutando tarea de refresco de imagen estatica");
+        this.cameraService.refreshAllStaticImages();
+        LOG.info("FINAL : Ejecutando tarea de refresco de imagen estatica");
     }
 }
