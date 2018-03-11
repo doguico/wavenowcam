@@ -59,7 +59,7 @@ public class BeachServiceImpl implements BeachService {
         Beach beach = beachDAO.getBeachById(id);
         try {
             if (beach != null) {
-                beach.setCoverPhotoBase64(Base64Util.fileABase64(beach.getCoverPhotoPath(), PNG));
+                beach.setStaticPhotoBase64(Base64Util.fileABase64(beach.getStaticPhotoPath(), PNG));
             }
         } catch (Base64Exception ex) {
             LOG.error(ex.getMessage());

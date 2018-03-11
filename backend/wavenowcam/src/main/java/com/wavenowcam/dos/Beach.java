@@ -1,7 +1,6 @@
 package com.wavenowcam.dos;
 
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.net.URL;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Transient;
-import org.apache.log4j.Level;
+
 import org.apache.log4j.Logger;
 
 /**

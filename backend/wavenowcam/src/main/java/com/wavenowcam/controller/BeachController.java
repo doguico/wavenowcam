@@ -4,7 +4,6 @@ import com.wavenowcam.dtos.CarouselBeachDTO;
 import com.wavenowcam.dtos.EditBeachDTO;
 import com.wavenowcam.dtos.SelectedBeachDTO;
 import com.wavenowcam.service.BeachService;
-import com.wavenowcam.service.CameraService;
 
 import java.util.List;
 
