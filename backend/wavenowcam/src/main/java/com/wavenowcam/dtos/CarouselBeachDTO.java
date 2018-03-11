@@ -1,16 +1,24 @@
 package com.wavenowcam.dtos;
 
+import com.wavenowcam.dos.Beach;
+
 /**
  *
  * @author guidocorazza
  */
-public class BeachDTO {
+public class CarouselBeachDTO {
     private Long id;
     private String name;
     private String coverPhotoBase64;
     
-    public BeachDTO() { }
+    public CarouselBeachDTO() { }
 
+    public CarouselBeachDTO(Beach beach) {
+        this.id = beach.getId();
+        this.name = beach.getName();
+        this.coverPhotoBase64 = beach.getCoverPhotoBase64();
+    }
+    
     public Long getId() {
         return id;
     }

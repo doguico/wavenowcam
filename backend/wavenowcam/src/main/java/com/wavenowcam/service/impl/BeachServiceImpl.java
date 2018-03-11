@@ -2,10 +2,13 @@ package com.wavenowcam.service.impl;
 
 import com.wavenowcam.dao.BeachDAO;
 import com.wavenowcam.dos.Beach;
-import com.wavenowcam.dtos.BeachDTO;
+import com.wavenowcam.dtos.CarouselBeachDTO;
+import com.wavenowcam.dtos.EditBeachDTO;
+import com.wavenowcam.dtos.SelectedBeachDTO;
 import com.wavenowcam.exceptions.Base64Exception;
 import com.wavenowcam.service.BeachService;
 import com.wavenowcam.utils.Base64Util;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.log4j.Logger;
@@ -19,20 +22,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class BeachServiceImpl implements BeachService {
 
-    private static final String PNG = ".png";
-    private static final String COVERPHOTOPATH = "-cover-photo";
+    private static final String PNG = "png";
+    private static final String COVER_PHOTO_PATH = "-cover-photo";
+    private static final String STATIC_PHOTO_PATH = "-static-photo";
     private static final Logger LOG = Logger.getLogger(BeachServiceImpl.class);
 
     @Autowired
     private BeachDAO beachDAO;
 
     @Override
-    public Long saveOrUpdateBeach(BeachDTO beachDto, Boolean updating) {
+    public Long saveOrUpdateBeach(EditBeachDTO beachDto, Boolean updating) {
+        // TODO: Definir que hacer si no hay cover photo
         try {
-            Beach beach = beachDTO2Beach(beachDto, updating);
+            Beach beach = editBeachDTO2Beach(beachDto, updating);
             if (beach.getCoverPhotoBase64() != null) {
                 Base64Util.base64AFile(beach.getCoverPhotoBase64(), beach.getCoverPhotoPath(), PNG);
+                beach.setCoverPhotoBase64(null);
             }
+            // Si cambia el nombre
             return beachDAO.saveBeach(beach);
         } catch (Base64Exception ex) {
             LOG.error(ex.getMessage());
@@ -42,12 +49,13 @@ public class BeachServiceImpl implements BeachService {
 
     @Override
     public void deleteBeach(Long id) {
-        // eliminar cover photo y todas las fotos que queden del live
+        // TODO: eliminar cover photo y todas las fotos que queden del live
         beachDAO.deleteBeach(id);
     }
 
     @Override
-    public BeachDTO getBeachById(Long id) {
+    public SelectedBeachDTO getBeachById(Long id) {
+        // TODO: Definir que hacer si no hay cover photo
         Beach beach = beachDAO.getBeachById(id);
         try {
             if (beach != null) {
@@ -56,49 +64,44 @@ public class BeachServiceImpl implements BeachService {
         } catch (Base64Exception ex) {
             LOG.error(ex.getMessage());
         }
-        return beach2BeachDTO(beach);
+
+        return new SelectedBeachDTO(beach);
     }
 
     @Override
-    public BeachDTO getBeachByName(String name) {
+    public EditBeachDTO getBeachByName(String name) {
         Beach beach = this.beachDAO.getBeachByName(name);
-        return beach2BeachDTO(beach);
+        return beach != null ? new EditBeachDTO(beach) : null;
     }
-    
+
     @Override
-    public List<BeachDTO> getAll() {
+    public List<CarouselBeachDTO> getAll() {
+        // TODO: Definir que hacer si no hay cover photo
         List<Beach> beaches = this.beachDAO.getAll();
-        List<BeachDTO> beachesDTO = new ArrayList<>();
-        for(Beach beach: beaches){
-            beachesDTO.add(beach2BeachDTO(beach));
+        List<CarouselBeachDTO> beachesDTO = new ArrayList<>();
+        for (Beach beach : beaches) {
+            try {
+                beach.setCoverPhotoBase64(Base64Util.fileABase64(beach.getCoverPhotoPath(), PNG));
+                beachesDTO.add(new CarouselBeachDTO(beach));
+            } catch (Base64Exception ex) {
+                LOG.error(ex.getMessage());
+            }
         }
-        
+
         return beachesDTO;
     }
 
-    private BeachDTO beach2BeachDTO(Beach beach) {
-        BeachDTO beachDto = null;
-        if (beach != null) {
-            beachDto = new BeachDTO();
-            beachDto.setId(beach.getId());
-            beachDto.setName(beach.getName());
-            beachDto.setCoverPhotoBase64(beach.getCoverPhotoBase64());
-        }
-        return beachDto;
-    }
-
-    private Beach beachDTO2Beach(BeachDTO beachDto, Boolean updatingBeach) {
+    private Beach editBeachDTO2Beach(EditBeachDTO beachDto, Boolean updatingBeach) {
         Beach beach = new Beach();
         if (updatingBeach) {
             beach.setId(beachDto.getId());
         }
         beach.setName(beachDto.getName());
-        beach.setCoverPhotoPath(beachDto.getName() + COVERPHOTOPATH);
+        beach.setCoverPhotoPath("/Users/guidocorazza/Workspace/wavesnowcam/POCS/" + beachDto.getName() + COVER_PHOTO_PATH);
         beach.setCoverPhotoBase64(beachDto.getCoverPhotoBase64());
+        beach.setStaticPhotoPath("/Users/guidocorazza/Workspace/wavesnowcam/POCS/" + beach.getName() + STATIC_PHOTO_PATH);
+        beach.setUri(beachDto.getUri());
 
         return beach;
     }
-
-    
-
 }

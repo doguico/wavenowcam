@@ -2,11 +2,13 @@ package com.wavenowcam;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  *
  * @author guidocorazza
  */
+@EnableScheduling
 @SpringBootApplication
 public class WaveNowCam {
 
@@ -15,7 +17,6 @@ public class WaveNowCam {
      */
     public static void main(String[] args) {
         SpringApplication.run(WaveNowCam.class, args);
-
     }
 
 }

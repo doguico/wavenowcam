@@ -1,6 +1,9 @@
 package com.wavenowcam.service;
 
-import com.wavenowcam.dtos.BeachDTO;
+import com.wavenowcam.dos.Beach;
+import com.wavenowcam.dtos.CarouselBeachDTO;
+import com.wavenowcam.dtos.EditBeachDTO;
+import com.wavenowcam.dtos.SelectedBeachDTO;
 import java.util.List;
 
 
@@ -10,9 +13,10 @@ import java.util.List;
  */
 public interface BeachService {
     
-    public Long saveOrUpdateBeach(BeachDTO beach, Boolean updating);
+    public Long saveOrUpdateBeach(EditBeachDTO beach, Boolean updating);
     public void deleteBeach(Long id);
-    public BeachDTO getBeachById(Long id);
-    public BeachDTO getBeachByName(String name);
-    public List<BeachDTO> getAll();
+    public SelectedBeachDTO getBeachById(Long id);
+    public EditBeachDTO getBeachByName(String name);
+    public List<CarouselBeachDTO> getAll();
+    
 }
