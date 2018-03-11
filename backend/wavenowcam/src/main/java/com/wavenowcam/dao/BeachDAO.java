@@ -1,14 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wavenowcam.dao;
+
+import com.wavenowcam.dos.Beach;
+import java.util.List;
 
 /**
  *
  * @author guidocorazza
  */
-public class BeachDAO {
+public interface BeachDAO {
+    
+    public Long saveBeach(Beach beach);
+    public void deleteBeach(Long id);
+    public Beach getBeachById(Long id);
+    public Beach getBeachByName(String name);
+    public List<Beach> getAll();
     
 }
