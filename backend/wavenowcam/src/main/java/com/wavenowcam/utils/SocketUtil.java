@@ -33,7 +33,6 @@ public class SocketUtil {
     public static void socketResponseToFile(InputStream is, String path, String type) throws SocketException {
         try {
             OutputStream os = new FileOutputStream(path + "." + type);
-            System.out.println(is.available());
             byte[] b = new byte[2048];
             int length;
 

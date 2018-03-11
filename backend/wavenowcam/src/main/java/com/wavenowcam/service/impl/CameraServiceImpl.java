@@ -5,7 +5,6 @@ import com.wavenowcam.dos.Beach;
 import com.wavenowcam.exceptions.SocketException;
 import com.wavenowcam.service.CameraService;
 import com.wavenowcam.utils.SocketUtil;
-import java.io.IOException;
 
 import java.io.InputStream;
 import java.net.MalformedURLException;
@@ -13,7 +12,6 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +27,7 @@ public class CameraServiceImpl implements CameraService {
     private BeachDAO beachDAO;
 
     private static final String PNG = "png";
+    private static final String DATE_FORMAT = "HH:mm:ss";
     private static final Logger LOG = Logger.getLogger(CameraServiceImpl.class);
 
     @Override
@@ -47,15 +46,7 @@ public class CameraServiceImpl implements CameraService {
 
     @Override
     public Boolean pingCamera(String uri) throws MalformedURLException, SocketException {
-        try {
-            int port = 80;
-            URL url = new URL(uri);            
-            int cant=  SocketUtil.sendRequestToSocket(url.getHost(), port, url.getFile()).read(new byte[2048]);
-//            return SocketUtil.sendRequestToSocket(url.getHost(), port, url.getFile()).read(new byte[2048]) != -1;
-return cant != -1;
-        } catch (IOException ex) {
-            throw new SocketException(SocketException.READ_ERROR);
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     private void refreshStaticImage(Beach beach) {
@@ -78,7 +69,7 @@ return cant != -1;
     }
 
     private void updateLastUpdate(Beach beach) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
         beach.setLastUpdate(dateFormat.format(new Date()));
         this.beachDAO.saveBeach(beach);
     }
