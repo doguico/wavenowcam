@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.wavenowcam.service;
+
+import com.wavenowcam.dtos.UserDTO;
 
 /**
  *
  * @author guidocorazza
  */
 public interface UserService {
-    
-    
+    void save(UserDTO user);
+    void delete(UserDTO id); 
+    UserDTO getUserByEmail(String email);
 }
