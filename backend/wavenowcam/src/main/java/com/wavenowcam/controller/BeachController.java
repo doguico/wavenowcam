@@ -7,7 +7,9 @@ import com.wavenowcam.service.BeachService;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/beaches")
 public class BeachController {
 
-    private static final Logger LOG = Logger.getLogger(BeachController.class);
+    private static final Logger LOG = LogManager.getLogger(BeachController.class);
 
     @Autowired
     private BeachService beachService;

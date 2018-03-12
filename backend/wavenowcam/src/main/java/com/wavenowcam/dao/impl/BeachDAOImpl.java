@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 public class BeachDAOImpl implements BeachDAO {
 
     private final SessionFactory sessionFactory;
-    private static String BEACH_TABLE = "BEACH";
 
     private BeachDAOImpl() {
         this.sessionFactory = HibernateUtil.getSessionFactory();

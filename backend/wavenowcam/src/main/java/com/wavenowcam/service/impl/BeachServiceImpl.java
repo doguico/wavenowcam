@@ -11,7 +11,10 @@ import com.wavenowcam.utils.Base64Util;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +28,7 @@ public class BeachServiceImpl implements BeachService {
     private static final String PNG = "png";
     private static final String COVER_PHOTO_PATH = "-cover-photo";
     private static final String STATIC_PHOTO_PATH = "-static-photo";
-    private static final Logger LOG = Logger.getLogger(BeachServiceImpl.class);
+    private static final Logger LOG = LogManager.getLogger(BeachServiceImpl.class);
 
     @Autowired
     private BeachDAO beachDAO;

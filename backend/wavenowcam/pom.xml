@@ -9,7 +9,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.10.RELEASE</version>
+        <version>2.0.0.RELEASE</version>
     </parent>
     
     <properties>
@@ -25,6 +25,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>  
+        <!--Spring Security-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>5.0.3.RELEASE</version>
+        </dependency>
         <!--MySql connector -->
         <dependency>
             <groupId>mysql</groupId>
@@ -43,6 +49,11 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>5.2.12.Final</version>
         </dependency>        
+        <!-- Log4j -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
     
     </dependencies>
     

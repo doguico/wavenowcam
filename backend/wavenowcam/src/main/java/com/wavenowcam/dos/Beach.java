@@ -9,33 +9,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Transient;
 
-import org.apache.log4j.Logger;
-
 /**
  *
  * @author guidocorazza
  */
 @Entity
 public class Beach implements Serializable {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String name;
+    @Column(nullable = false)
     private String uri;
+    @Column(nullable = false)
     private String coverPhotoPath;
+    @Column(nullable = false)
     private String staticPhotoPath;
     private String lastUpdate;
-    
+
     @Transient
     private String coverPhotoBase64;
     @Transient
     private String staticPhotoBase64;
     @Transient
     private URL url;
-    
-    private static final Logger LOG = Logger.getLogger(Beach.class);
 
     public Beach() { }
 
@@ -111,11 +110,9 @@ public class Beach implements Serializable {
         this.url = url;
     }
 
-   
-    
     @Override
     public String toString() {
         return "Name: " + this.getName();
     }
-    
+
 }

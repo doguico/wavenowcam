@@ -9,7 +9,7 @@ import java.net.MalformedURLException;
  */
 public interface CameraService {
     
-    public void refreshAllStaticImages();
-    public Boolean pingCamera(String uri) throws MalformedURLException, SocketException;
+    void refreshAllStaticImages();
+    Boolean pingCamera(String uri) throws MalformedURLException, SocketException;
     
 }
