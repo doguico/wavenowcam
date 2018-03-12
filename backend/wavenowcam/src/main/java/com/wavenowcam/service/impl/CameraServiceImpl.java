@@ -12,7 +12,10 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +31,7 @@ public class CameraServiceImpl implements CameraService {
 
     private static final String PNG = "png";
     private static final String DATE_FORMAT = "HH:mm:ss";
-    private static final Logger LOG = Logger.getLogger(CameraServiceImpl.class);
+    private static final Logger LOG = LogManager.getLogger(CameraServiceImpl.class);
 
     @Override
     public void refreshAllStaticImages() {

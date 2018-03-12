@@ -12,7 +12,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/wavenowcam?useSSL=false</property>
 
         <property name="hibernate.current_session_context_class">thread</property>
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">create</property> <!-- TODO: update -->
         
         <property name="hibernate.c3p0.min_size">5</property>
@@ -22,6 +22,7 @@
         <property name="hibernate.c3p0.idle_test_period">3000</property>        
         
         <mapping class="com.wavenowcam.dos.Beach"/>
+        <mapping class="com.wavenowcam.dos.User"/>
                 
     </session-factory>
 </hibernate-configuration>
