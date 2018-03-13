@@ -23,13 +23,17 @@ public class User implements Serializable {
     @Column(unique = true, nullable = false)
     private String email;
     @Column(nullable = false)
+    private String username;
+    @Column(nullable = false)
     private String password;
+
     
     public User() { }
     
     public User(UserDTO user) {
         this.email = user.getEmail();
         this.password = user.getPassword();
+        this.username = user.getEmail();
     }
 
     public Long getId() {
@@ -48,6 +52,14 @@ public class User implements Serializable {
         this.email = email;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -55,4 +67,5 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

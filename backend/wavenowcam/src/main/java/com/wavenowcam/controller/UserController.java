@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,13 +25,16 @@ public class UserController {
     
     @Autowired
     private UserService userService;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
         
     private static final Logger LOG = LogManager.getLogger(UserController.class);
     
-    @RequestMapping(value = "signup", method = RequestMethod.POST)
+    @RequestMapping(value = "sign-up", method = RequestMethod.POST)
     public ResponseEntity signUp(@RequestBody(required = true) UserDTO user) {
         if (parametersAreNotNull(user)) {
             if(emailIsAvailable(user.getEmail())) {
+               user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
                this.userService.save(user); 
                LOG.info("Creando usuario con email " + user.getEmail());
                return ResponseEntity.ok("Usuario creado con éxito");
